@@ -34,7 +34,7 @@ properties:
     description: From platform
   avatar:
     type: string
-    description: From platform or auto-generated
+    description: From platform
   unread_conversations:
     type: integer
     minimum: 1
@@ -47,9 +47,7 @@ properties:
     type: integer
     minimum: 1
     maximum: 255
-    description: |-
-      - DEFAULT: 1
-      - TESTER: 2
+    description: From ChatSubscriberType model
   question_id:
     type:
       - integer

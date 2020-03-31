@@ -1,0 +1,8 @@
+title: ChatPlatform
+type: object
+x-tags:
+  - chat
+properties:
+  id:
+    type: integer
+description: "  - ##### ID = 1: Telegram\n  - ##### ID = 2: Viber\n  - ##### ID = 3: VK\n  - ##### ID = 3: Facebook"

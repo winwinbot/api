@@ -1,0 +1,21 @@
+title: Webhook
+type: object
+x-tags:
+  - webhook
+description: ''
+properties:
+  id:
+    type: integer
+  url:
+    type: string
+    description: Url for your server
+  token:
+    type: string
+  status_id:
+    type: integer
+    description: From WebhookStatus model
+required:
+  - id
+  - url
+  - token
+  - status_id

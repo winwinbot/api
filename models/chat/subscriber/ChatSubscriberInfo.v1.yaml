@@ -16,7 +16,9 @@ properties:
     type: string
     description: From ChatSubscriberForm model
   prop_value:
-    type: string
+    type:
+      - string
+      - integer
 required:
   - name
   - type_id
