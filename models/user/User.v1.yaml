@@ -1,0 +1,97 @@
+title: User
+type: object
+x-tags:
+  - user
+description: ''
+properties:
+  id:
+    type: integer
+  email:
+    type: string
+    format: email
+    description: ''
+  email_verify:
+    type:
+      - string
+      - 'null'
+    format: email
+    description: |-
+      Pending verification email.
+
+      If the user decided to change the email, but has not confirmed yet.
+  email_verified_at:
+    type: string
+    format: date-time
+  avatar:
+    type: string
+  balance:
+    type: integer
+    minimum: 0
+    description: Balance for income from referrals and template bots.
+  type_id:
+    type: integer
+  ref_id:
+    type:
+      - integer
+      - 'null'
+    description: ID of the person who invited this user
+  sub_domain_id:
+    type:
+      - integer
+      - 'null'
+    description: 'If you are using your own domain, plase contact support to get your unique subdomain ID'
+  lang_id:
+    type: integer
+    description: |-
+      - RU: 1
+      - EN: 2
+      - HU: 3
+      - ES: 4;
+  subscription_id:
+    type: integer
+  subscriber_limit:
+    type:
+      - string
+      - 'null'
+    format: date-time
+    description: Date when bots will be stopped if the number of subscribers has reached the subscription limit
+  subscribed_until:
+    type: string
+    format: date-time
+    description: Subscription end date
+  withdraw_card:
+    type:
+      - string
+      - 'null'
+    description: Card for withdrawing funds from a referral program.
+  guide_stage:
+    type: integer
+    minimum: 0
+    maximum: 10
+  show_guide_stage:
+    type: boolean
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+required:
+  - id
+  - email
+  - email_verify
+  - email_verified_at
+  - avatar
+  - balance
+  - type_id
+  - ref_id
+  - sub_domain_id
+  - lang_id
+  - subscription_id
+  - subscriber_limit
+  - subscribed_until
+  - withdraw_card
+  - guide_stage
+  - show_guide_stage
+  - created_at
+  - updated_at

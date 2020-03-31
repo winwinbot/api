@@ -1,0 +1,24 @@
+title: ChatSubscriberInfo
+type: object
+x-tags:
+  - chat
+  - subscriber
+properties:
+  name:
+    type: string
+    description: From ChatSubscriberForm model
+  type_id:
+    type: integer
+    minimum: 1
+    maximum: 3
+    description: From ChatSubscriberForm model
+  prop:
+    type: string
+    description: From ChatSubscriberForm model
+  prop_value:
+    type: string
+required:
+  - name
+  - type_id
+  - prop
+  - prop_value

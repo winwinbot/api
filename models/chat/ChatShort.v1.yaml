@@ -1,0 +1,31 @@
+title: ChatShort
+type: object
+x-tags:
+  - chat
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+  username:
+    type: string
+    description: Platform username
+  platform_id:
+    type: integer
+    description: "- Telegram: 1\n- Viber: 2 \n- VK: 3\n- Facebook: 4"
+  template_token:
+    type:
+      - string
+      - 'null'
+  template_parent_id:
+    type:
+      - integer
+      - 'null'
+required:
+  - id
+  - name
+  - username
+  - platform_id
+  - template_token
+  - template_parent_id
+description: ''

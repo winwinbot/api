@@ -1,0 +1,98 @@
+title: ChatSubscriber
+type: object
+x-tags:
+  - chat
+  - subscriber
+description: ''
+properties:
+  id:
+    type: integer
+  subscriber_id:
+    type: string
+    description: From platform
+  chat_id:
+    type: integer
+  first_name:
+    type:
+      - string
+      - 'null'
+    description: From platform
+  last_name:
+    type:
+      - string
+      - 'null'
+    description: From platform
+  username:
+    type:
+      - string
+      - 'null'
+    description: From platform
+  language_code:
+    type:
+      - string
+      - 'null'
+    description: From platform
+  avatar:
+    type: string
+    description: From platform or auto-generated
+  unread_conversations:
+    type: integer
+    minimum: 1
+    maximum: 255
+    description: |-
+      Number of unread messages in conversation.
+
+      Usually lower than 10 (ui and optimization)
+  type_id:
+    type: integer
+    minimum: 1
+    maximum: 255
+    description: |-
+      - DEFAULT: 1
+      - TESTER: 2
+  question_id:
+    type:
+      - integer
+      - 'null'
+    description: "Last question id, that was asked. \n\nUpdated or reset when a new message is received.\n"
+  question_token:
+    type:
+      - string
+      - 'null'
+    description: "Last question message token. \nUsed to remove the keyboard after question answer."
+  info:
+    type: array
+    items:
+      allOf:
+        - $ref: ./ChatSubscriberInfo.v1.yaml
+  created_at:
+    type: string
+    format: date-time
+    description: Subscription start date
+  updated_at:
+    type: string
+    format: date-time
+    description: "This parameter is used to calculate the current day of the subscription, as the difference between now and updated_at. \n\nUpdated after \"/start\" command."
+  deleted_at:
+    type:
+      - string
+      - 'null'
+    format: date-time
+    description: Subscription end date
+required:
+  - id
+  - subscriber_id
+  - chat_id
+  - first_name
+  - last_name
+  - username
+  - language_code
+  - avatar
+  - unread_conversations
+  - type_id
+  - question_id
+  - question_token
+  - info
+  - created_at
+  - updated_at
+  - deleted_at
