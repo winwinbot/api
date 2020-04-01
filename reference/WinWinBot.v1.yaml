@@ -3,7 +3,8 @@ info:
   title: WinWinBot
   version: '1.0'
   description: "#### To use the basic api endpoints, you need to authorize through **Auth/Login** endpoint and get your OAuth params:\n  - ##### token_type\n  - ##### token\n\n#### These parameters will need to be attached to each request in the headers with parameter name **authorization**. There must be a space between these parameters.\n\n### Example: \n  - ##### token_type: Bearer  \n  - ##### token: 123 \n  - ##### authorization: Bearer 123\n\n\n\n\n\n\n\n\n\n\n\n\n"
-servers: []
+servers:
+  - url: 'http://my.winwinbot.com/api'
 paths:
   /auth/login:
     post:
@@ -343,15 +344,17 @@ paths:
         required: true
     put:
       summary: Webhook Activation
-      tags: []
+      tags:
+        - chat
+        - webhook
       responses: {}
       operationId: put-chats-chat_id-webhooks-webhook_id
       description: |+
         ### Endpoint is used to activate Webhook model from a specific chat-bot.
         #### To activate the webhook, we will send a **POST** request to the **URL** specified in the Webhook model.
-        #### In response, you need to return a **json** object containing the **token** parameter and its **value** from current Webhook model.
+        #### In response, you need to return a **json** object containing the **token** attribute and its **value** from current Webhook model.
 
-        #### Ex: { token: '123' }
+        #### Ex: {"token": "123"}
 
 
       requestBody:
@@ -359,7 +362,11 @@ paths:
           application/json:
             schema:
               $ref: ../models/webhook/Webhook.v1.yaml
-        description: '#### Updated model with a new **status_id**. More info in **WebhookStatus** model.'
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: "#### After **successful** activation you will get updated model with a new **status_id**. More info in **WebhookStatus** model.\n\n#### Each time you get a new subscriber or if the information in the existing one has changed, we will send a **POST** request to the specified **url** containing the **json** object with params:\n\n- #### subscriber (updated **ChatSubscriber** model) \n- #### token (**Webhook** model token).\n\n\n#### In response, you need to return a **json** object containing the **token** attribute and its **value** from current Webhook model.\n\n#### Ex: {\"token\": \"123\"}\n\n#### If response is **incorrect**, then the **status** of the webhook will be **changed** and webhook will be **stopped**."
     delete:
       summary: Webhook Deactivation
       operationId: delete-chats-chat_id-webhooks-webhook_id
@@ -371,6 +378,9 @@ paths:
               schema:
                 type: integer
       description: '### Endpoint is used to deactivate Webhook model from a specific chat-bot.'
+      tags:
+        - chat
+        - webhook
 components:
   schemas: {}
   securitySchemes:
