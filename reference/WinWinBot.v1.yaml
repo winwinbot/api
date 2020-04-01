@@ -56,7 +56,7 @@ paths:
             If param = **1**, then response is **object** with token params.
 
             Else - **url** for frontend authorization.
-      description: '### Endpoint for authorization.'
+      description: '> #### Endpoint for **authorization**.'
   /auth/logout:
     get:
       summary: Logout
@@ -66,7 +66,8 @@ paths:
       operationId: get-auth-logout
       security:
         - OAuth: []
-      description: "### Endpoint for deactivation current token. \n\n#### After success logout you will be redirected to **home** page."
+      description: "> #### Endpoint for **deactivation** current token. \n\n<!-- theme: success -->\n> #### After **success** logout you will be redirected to **home** page."
+      requestBody: {}
   '/chats/{chat_id}/subscribers':
     parameters:
       - schema:
@@ -169,7 +170,7 @@ paths:
       requestBody: {}
       security:
         - OAuth: []
-      description: '### Endpoint is used to get ChatSubscriber models from specific chat-bot.'
+      description: '> #### Endpoint is used to get **ChatSubscriber** models from specific chat-bot.'
   '/chats/{chat_id}/subscribers/{subscriber_id}':
     parameters:
       - schema:
@@ -189,7 +190,9 @@ paths:
         - subscriber
       responses:
         '200':
-          description: Updated ChatSubscriber model
+          description: |-
+            <!-- theme: success -->
+            > #### Updated **ChatSubscriber** model
           content:
             application/json:
               schema:
@@ -210,7 +213,7 @@ paths:
               required:
                 - info
         description: ' '
-      description: '### Endpoint is used to update "info" fields of specific ChatSubscriber model.'
+      description: '> #### Endpoint is used to update **info** fields of specific **ChatSubscriber** model.'
       security:
         - OAuth: []
     delete:
@@ -220,13 +223,16 @@ paths:
         - subscriber
       responses:
         '200':
-          description: '#### Updated **ChatSubscriber** model'
+          description: |-
+            <!-- theme: success -->
+
+            > #### Updated **ChatSubscriber** model
           content:
             application/json:
               schema:
                 $ref: ../models/chat/subscriber/ChatSubscriber.v1.yaml
       operationId: delete-chat-chat_id-subscribers-subscriber
-      description: '### Endpoint is used to delete from testers ChatSubscriber model.'
+      description: '> #### Endpoint is used to delete **ChatSubscriber** model from **testers**.'
   '/chats/{chat_id}/subscriber-form':
     parameters:
       - schema:
@@ -254,7 +260,7 @@ paths:
                       chat:
                         $ref: ../models/chat/ChatShort.v1.yaml
       operationId: get-chat-chat_id-subscriber-form
-      description: '### Endpoint is used to get ChatSubscriberForm model from specific chat-bot.'
+      description: '> #### Endpoint is used to get **ChatSubscriberForm model** from specific chat-bot.'
       parameters:
         - schema:
             type: boolean
@@ -281,7 +287,7 @@ paths:
               schema:
                 $ref: ../models/webhook/Webhook.v1.yaml
       operationId: post-chats-chat_id-webhook
-      description: '### Endpoint is used to create Webhook model.'
+      description: '> #### Endpoint is used to create **Webhook** model.'
       requestBody:
         content:
           application/json:
@@ -294,10 +300,7 @@ paths:
                   description: URL for webhook notifications
               required:
                 - url
-        description: |-
-          #### Response is **Webhook** model which contains **token** attribute. Store **token** value in a **safe** place.
-
-          #### After creating the model, the webhook is in the **initialization** stage and you need to **activate** it. More information is available in **Webhook Activation** endpoint.
+        description: "<!-- theme: success -->\n> #### Response is **Webhook** model which contains **token** attribute. Store **token** value in a **safe** place.\n\n<!-- theme: warning -->\n> #### After creating the model, the webhook is in the **initialization** stage and you need to **activate** it. \n> #### More information is available in **Webhook Activation** endpoint."
     get:
       summary: Webhook Get
       tags:
@@ -305,7 +308,9 @@ paths:
         - webhook
       responses: {}
       operationId: get-chats-chat_id-webhook
-      description: '### Endpoint is used to get Webhook models from a specific chat-bot.'
+      description: |-
+        <!-- theme: info -->
+        > #### Endpoint is used to get **Webhook** models from a specific chat-bot.
       requestBody:
         content:
           application/json:
@@ -316,7 +321,7 @@ paths:
                   items:
                     allOf:
                       - $ref: ../models/webhook/Webhook.v1.yaml
-        description: '#### If you specified **id**, then response is **Webhook** model. Else - **array** of **Webhook** models.'
+        description: "<!-- theme: success-->\n> #### If you specified **id**, then response is **Webhook** model. \n> #### Else - **array** of **Webhook** models."
       parameters:
         - schema:
             type: integer
@@ -349,14 +354,19 @@ paths:
         - webhook
       responses: {}
       operationId: put-chats-chat_id-webhooks-webhook_id
-      description: |+
-        ### Endpoint is used to activate Webhook model from a specific chat-bot.
-        #### To activate the webhook, we will send a **POST** request to the **URL** specified in the Webhook model.
-        #### In response, you need to return a **json** object containing the **token** attribute and its **value** from current Webhook model.
+      description: |-
+        > #### Endpoint is used to **activate** Webhook model from a specific chat-bot.
 
-        #### Ex: {"token": "123"}
+        > #### To **activate** the webhook, we will send a **POST** request to the **URL** specified in the Webhook model.
 
+        > #### In response, you need to return a **json** object containing the **token** attribute and its **value** from current Webhook model.
 
+        ```json
+        Example:
+        {
+          "token": "123"
+        }
+        ```
       requestBody:
         content:
           application/json:
@@ -366,7 +376,31 @@ paths:
             schema:
               type: object
               properties: {}
-        description: "#### After **successful** activation you will get updated model with a new **status_id**. More info in **WebhookStatus** model.\n\n#### Each time you get a new subscriber or if the information in the existing one has changed, we will send a **POST** request to the specified **url** containing the **json** object with params:\n\n- #### subscriber (updated **ChatSubscriber** model) \n- #### token (**Webhook** model token).\n\n\n#### In response, you need to return a **json** object containing the **token** attribute and its **value** from current Webhook model.\n\n#### Ex: {\"token\": \"123\"}\n\n#### If response is **incorrect**, then the **status** of the webhook will be **changed** and webhook will be **stopped**."
+        description: |-
+          <!-- theme: success -->
+          > #### After **successful** activation you will get updated model with a new **status_id**. More info in **WebhookStatus** model.
+          <!-- theme: success -->
+          > #### Each time you **get** a new subscriber or if the information in the existing one has **changed**, we will send a **POST** request to the specified **url** containing the **json** object.
+          ```json
+          Example:
+          {
+            "subscriber": {id: 1, name: 'Alex', ...},
+            "token": "123"
+          }
+          ```
+
+          <!-- theme: success -->
+          > #### In response, you need to return a **json** object containing the **token** attribute and its **value** from current Webhook model.
+
+          ```json
+          Example:
+          {
+            "token": "123"
+          }
+          ```
+
+          <!-- theme: danger-->
+          > #### If response is **incorrect**, then the **status** of the webhook will be **changed** and webhook will be **stopped**.
     delete:
       summary: Webhook Deactivation
       operationId: delete-chats-chat_id-webhooks-webhook_id
