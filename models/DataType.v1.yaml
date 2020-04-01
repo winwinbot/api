@@ -2,7 +2,7 @@ title: DataType
 type: object
 x-tags:
   - data-type
-description: "  - ##### ID = 1: String\n  - ##### ID = 2: Int\n  - ##### ID = 3: Date"
+description: "  > ##### ID = 1: String\n  \n  > ##### ID = 2: Int\n  \n  > ##### ID = 3: Date"
 properties:
   id:
     type: integer

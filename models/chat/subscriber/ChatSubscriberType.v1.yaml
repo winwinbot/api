@@ -3,7 +3,7 @@ type: object
 x-tags:
   - chat
   - subscriber
-description: "  - ##### ID = 1: Default\n  - ##### ID = 2: Tester"
+description: "  > ##### ID = 1: Default\n  \n  > ##### ID = 2: Tester"
 properties:
   id:
     type: integer

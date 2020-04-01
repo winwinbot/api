@@ -5,20 +5,13 @@ info:
   description: |-
     > #### To use the basic api endpoints, you need to authorize through **Auth/Login** endpoint and get your **OAuth** params.
     ```json
-    Example:
-    {
-      "token": "123",
-      "token_type": "Bearer"
-    }
+    Example: { "token": "123", "token_type": "Bearer" }
     ```
 
     > #### These parameters will need to be **attached** to **each** request in the **headers** with parameter name **authorization**. There must be a **space** between these parameters.
 
     ```json
-    Example:
-    {
-      "authorization": "Bearer 123"
-    }
+    Example: { "authorization": "Bearer 123" }
     ```
 servers:
   - url: 'http://my.winwinbot.com/api'
@@ -379,10 +372,7 @@ paths:
         > #### In response, you need to return a **json** object containing the **token** attribute and its **value** from current Webhook model.
 
         ```json
-        Example:
-        {
-          "token": "123"
-        }
+        Example: { "token": "123" }
         ```
       requestBody:
         content:
@@ -399,21 +389,14 @@ paths:
           <!-- theme: success -->
           > #### Each time you **get** a new subscriber or if the information in the existing one has **changed**, we will send a **POST** request to the specified **url** containing the **json** object.
           ```json
-          Example:
-          {
-            "subscriber": {id: 1, name: 'Alex', ...},
-            "token": "123"
-          }
+          Example: { "subscriber": {id: 1, name: 'Alex', ...}, "token": "123" }
           ```
 
           <!-- theme: success -->
           > #### In response, you need to return a **json** object containing the **token** attribute and its **value** from current Webhook model.
 
           ```json
-          Example:
-          {
-            "token": "123"
-          }
+          Example: { "token": "123" }
           ```
 
           <!-- theme: danger-->
@@ -423,12 +406,16 @@ paths:
       operationId: delete-chats-chat_id-webhooks-webhook_id
       responses:
         '200':
-          description: '#### **Success** response is **1**. Else **0**.'
+          description: |-
+            <!-- theme: success-->
+            > #### **Success** response is **1**.
+            <!-- theme: danger-->
+            > #### **Wrong** response is **0**.
           content:
             application/json:
               schema:
                 type: integer
-      description: '### Endpoint is used to deactivate Webhook model from a specific chat-bot.'
+      description: '> #### Endpoint is used to **deactivate** Webhook model from a specific chat-bot.'
       tags:
         - chat
         - webhook

@@ -2,7 +2,7 @@ title: WebhookStatus
 type: object
 x-tags:
   - webhook
-description: "  - ##### ID = 1: Webhook initialized successfully and is awaiting for activation.\n  - ##### ID = 2: Webhook successfully activated.\n  - ##### ID = 3: Webhook stopped due to an incorrect response."
+description: "  > ##### ID = 1: Webhook initialized successfully and is awaiting for activation.\n  \n  > ##### ID = 2: Webhook successfully activated.\n  \n  > ##### ID = 3: Webhook stopped due to an incorrect response."
 properties:
   id:
     type: integer
