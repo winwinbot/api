@@ -1,0 +1,17 @@
+title: ChatSubscriberFormInfo
+type: object
+x-tags:
+  - chat
+  - form
+properties:
+  name:
+    type: string
+  type_id:
+    type: integer
+    description: From DataType model
+  prop:
+    type: string
+required:
+  - name
+  - type_id
+  - prop

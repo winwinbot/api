@@ -6,3 +6,5 @@ description: "  - ##### ID = 1: Webhook initialized successfully and is awaiting
 properties:
   id:
     type: integer
+required:
+  - id

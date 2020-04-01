@@ -8,7 +8,7 @@ properties:
     type: integer
   url:
     type: string
-    description: Url for your server
+    description: ''
   token:
     type: string
   status_id:

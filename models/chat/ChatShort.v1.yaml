@@ -13,7 +13,7 @@ properties:
     description: From platform
   platform_id:
     type: integer
-    description: More info in ChatPlatform model
+    description: From ChatPlatform model
   template_token:
     type:
       - string

@@ -1,0 +1,23 @@
+title: ChatSubscriberForm
+type: object
+x-tags:
+  - chat
+  - form
+description: ''
+properties:
+  id:
+    type: integer
+  chat_id:
+    type:
+      - string
+      - integer
+    description: ''
+  info:
+    type: array
+    items:
+      allOf:
+        - $ref: ../subscriber/ChatSubscriberInfo.v1.yaml
+required:
+  - id
+  - chat_id
+  - info

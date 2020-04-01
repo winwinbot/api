@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: WinWinBot
   version: '1.0'
-  description: "#### To use the basic api endpoints, you need to authorize through **Login** endpoint and get your OAuth params:\n  - ##### token_type\n  - ##### token\n\n#### These parameters will need to be attached to each request in the headers with parameter name **authorization**. There must be a space between these parameters.\n\n### Example: \n  - ##### token_type: Bearer  \n  - ##### token: 123 \n  - ##### authorization: Bearer 123\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  description: "#### To use the basic api endpoints, you need to authorize through **Auth/Login** endpoint and get your OAuth params:\n  - ##### token_type\n  - ##### token\n\n#### These parameters will need to be attached to each request in the headers with parameter name **authorization**. There must be a space between these parameters.\n\n### Example: \n  - ##### token_type: Bearer  \n  - ##### token: 123 \n  - ##### authorization: Bearer 123\n\n\n\n\n\n\n\n\n\n\n\n\n"
 servers: []
 paths:
   /auth/login:
@@ -52,8 +52,9 @@ paths:
           in: query
           name: api
           description: |-
-            If is true, then response is object with token params.
-            Else - url for frontend authorization.
+            If param = **1**, then response is **object** with token params.
+
+            Else - **url** for frontend authorization.
       description: '### Endpoint for authorization.'
   /auth/logout:
     get:
@@ -64,8 +65,8 @@ paths:
       operationId: get-auth-logout
       security:
         - OAuth: []
-      description: "### Endpoint for deactivation current token. \n\n#### After success logout you will be redirected to \"home\" page."
-  '/chat/{chat_id}/subscribers':
+      description: "### Endpoint for deactivation current token. \n\n#### After success logout you will be redirected to **home** page."
+  '/chats/{chat_id}/subscribers':
     parameters:
       - schema:
           type: integer
@@ -109,7 +110,7 @@ paths:
             minimum: 1
           in: query
           name: id
-          description: Get subscriber with the specified ID
+          description: 'Get models from specified **id**'
         - schema:
             type: integer
             minimum: 1
@@ -117,52 +118,58 @@ paths:
           in: query
           name: type_id
           description: |-
-            Get subscribers with the specified TYPE_ID.
+            Get models from specified **type_id**
 
-            More information on this option is available in the "ChatSubscriber" model.
+            More info in **ChatSubscriberType** model
         - schema:
             type: integer
             minimum: 1
           in: query
           name: filter_id
-          description: Get subscribers from the specified filter
+          description: 'Get models from specified **filter_id**'
         - schema:
             type: boolean
           in: query
           name: count
-          description: Get the number of subscribers
+          description: 'Get **number** of models'
         - schema:
             type: string
           in: query
           name: search
-          description: 'Get subscribers whose fields (first_name, last_name, username) contain this param'
+          description: 'Get models whose fields **first_name**, **last_name**, **username** contain this param'
         - schema:
             type: integer
             maximum: 10000
             minimum: 1
           in: query
           name: limit
-          description: Limit number of returned subscribers
+          description: 'Limit **number** of models in response'
         - schema:
             type: boolean
           in: query
           name: with_trashed
-          description: Get also unsubscribed subscribers
+          description: 'Append **unsubscribed** models to response'
         - schema:
             type: boolean
           in: query
           name: with_chat
-          description: Append ChatShort model to response
+          description: 'Append **ChatShort** model to response'
         - schema:
             type: string
           in: header
           name: i18n-lang
-          description: "For a query with the \"count\" parameter, you can specify the language (ru, en, es, hu) of declining the number of subscribers. \n\nDefault lang is \"en\"."
+          description: "For a query with **count** parameter, you can specify the language (**ru**, **en**, **es**, **hu**) of declining the number of subscribers. \n\nDefault lang is **en**."
+        - schema:
+            type: boolean
+          in: query
+          name: with_pagination
+          required: true
+          description: 'Using **api** set this param to **0**. Else response will be **paginated**.'
       requestBody: {}
       security:
         - OAuth: []
-      description: '### Endpoint is used to get ChatSubscriber models from a specific chat-bot.'
-  '/chat/{chat_id}/subscribers/{subscriber_id}':
+      description: '### Endpoint is used to get ChatSubscriber models from specific chat-bot.'
+  '/chats/{chat_id}/subscribers/{subscriber_id}':
     parameters:
       - schema:
           type: integer
@@ -203,6 +210,8 @@ paths:
                 - info
         description: ' '
       description: '### Endpoint is used to update "info" fields of specific ChatSubscriber model.'
+      security:
+        - OAuth: []
     delete:
       summary: Subscriber Delete
       tags:
@@ -210,13 +219,127 @@ paths:
         - subscriber
       responses:
         '200':
-          description: Updated ChatSubscriber model
+          description: '#### Updated **ChatSubscriber** model'
           content:
             application/json:
               schema:
                 $ref: ../models/chat/subscriber/ChatSubscriber.v1.yaml
       operationId: delete-chat-chat_id-subscribers-subscriber
       description: '### Endpoint is used to delete from testers ChatSubscriber model.'
+  '/chats/{chat_id}/subscriber-form':
+    parameters:
+      - schema:
+          type: string
+        name: chat_id
+        in: path
+        required: true
+    get:
+      summary: Subscriber-Form Get
+      tags:
+        - chat
+        - form
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: ../models/chat/form/ChatSubscriberForm.v1.yaml
+                  - type: object
+                    properties:
+                      form:
+                        $ref: ../models/chat/form/ChatSubscriberForm.v1.yaml
+                      chat:
+                        $ref: ../models/chat/ChatShort.v1.yaml
+      operationId: get-chat-chat_id-subscriber-form
+      description: '### Endpoint is used to get ChatSubscriberForm model from specific chat-bot.'
+      parameters:
+        - schema:
+            type: boolean
+          in: query
+          name: with_chat
+          description: 'Append **ChatShort** model to response'
+  '/chats/{chat_id}/webhook':
+    parameters:
+      - schema:
+          type: string
+        name: chat_id
+        in: path
+        required: true
+    post:
+      summary: Webhook Store
+      tags:
+        - chat
+        - webhook
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ../models/webhook/Webhook.v1.yaml
+      operationId: post-chats-chat_id-webhook
+      description: '### Endpoint is used to create Webhook model.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+                  description: URL for webhook notifications
+              required:
+                - url
+        description: ''
+    put:
+      summary: Webhook Update
+      tags:
+        - chat
+        - webhook
+      responses: {}
+      operationId: put-chats-chat_id-webhook
+    delete:
+      summary: Webhook Delete
+      tags:
+        - chat
+        - webhook
+      responses: {}
+      operationId: delete-chats-chat_id-webhook
+    get:
+      summary: Webhook Get
+      tags:
+        - chat
+        - webhook
+      responses: {}
+      operationId: get-chats-chat_id-webhook
+      description: '### Endpoint is used to get Webhook models from a specific chat-bot.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: ../models/webhook/Webhook.v1.yaml
+                - type: array
+                  items:
+                    allOf:
+                      - $ref: ../models/webhook/Webhook.v1.yaml
+        description: '#### If you specified **id**, then response is **Webhook** model. Else - **array** of **Webhook** models.'
+      parameters:
+        - schema:
+            type: integer
+            minimum: 1
+          in: query
+          name: id
+          description: 'Get models from specified **id**'
+        - schema:
+            type: boolean
+          in: query
+          name: with_pagination
+          description: 'Using **api** set this param to **0**. Else response will be **paginated**.'
+          required: true
 components:
   schemas: {}
   securitySchemes:

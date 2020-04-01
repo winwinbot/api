@@ -27,7 +27,7 @@ properties:
   balance:
     type: integer
     minimum: 0
-    description: Balance for income from referrals and template bots.
+    description: Balance for income from referrals and template bots
   type_id:
     type: integer
   ref_id:
@@ -42,11 +42,7 @@ properties:
     description: 'If you are using your own domain, plase contact support to get your unique subdomain ID'
   lang_id:
     type: integer
-    description: |-
-      - RU: 1
-      - EN: 2
-      - HU: 3
-      - ES: 4;
+    description: From Lang model
   subscription_id:
     type: integer
   subscriber_limit:
