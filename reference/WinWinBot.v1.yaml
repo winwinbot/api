@@ -2,7 +2,24 @@ openapi: 3.0.0
 info:
   title: WinWinBot
   version: '1.0'
-  description: "#### To use the basic api endpoints, you need to authorize through **Auth/Login** endpoint and get your OAuth params:\n  - ##### token_type\n  - ##### token\n\n#### These parameters will need to be attached to each request in the headers with parameter name **authorization**. There must be a space between these parameters.\n\n### Example: \n  - ##### token_type: Bearer  \n  - ##### token: 123 \n  - ##### authorization: Bearer 123\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  description: |-
+    > #### To use the basic api endpoints, you need to authorize through **Auth/Login** endpoint and get your **OAuth** params.
+    ```json
+    Example:
+    {
+      "token": "123",
+      "token_type": "Bearer"
+    }
+    ```
+
+    > #### These parameters will need to be **attached** to **each** request in the **headers** with parameter name **authorization**. There must be a **space** between these parameters.
+
+    ```json
+    Example:
+    {
+      "authorization": "Bearer 123"
+    }
+    ```
 servers:
   - url: 'http://my.winwinbot.com/api'
 paths:
