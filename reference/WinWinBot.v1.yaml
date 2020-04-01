@@ -260,7 +260,7 @@ paths:
           in: query
           name: with_chat
           description: 'Append **ChatShort** model to response'
-  '/chats/{chat_id}/webhook':
+  '/chats/{chat_id}/webhooks':
     parameters:
       - schema:
           type: string
@@ -293,21 +293,10 @@ paths:
                   description: URL for webhook notifications
               required:
                 - url
-        description: ''
-    put:
-      summary: Webhook Update
-      tags:
-        - chat
-        - webhook
-      responses: {}
-      operationId: put-chats-chat_id-webhook
-    delete:
-      summary: Webhook Delete
-      tags:
-        - chat
-        - webhook
-      responses: {}
-      operationId: delete-chats-chat_id-webhook
+        description: |-
+          #### Response is **Webhook** model which contains **token** attribute. Store **token** value in a **safe** place.
+
+          #### After creating the model, the webhook is in the **initialization** stage and you need to **activate** it. More information is available in **Webhook Activation** endpoint.
     get:
       summary: Webhook Get
       tags:
@@ -340,6 +329,48 @@ paths:
           name: with_pagination
           description: 'Using **api** set this param to **0**. Else response will be **paginated**.'
           required: true
+  '/chats/{chat_id}/webhooks/{webhook_id}':
+    parameters:
+      - schema:
+          type: string
+        name: chat_id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: webhook_id
+        in: path
+        required: true
+    put:
+      summary: Webhook Activation
+      tags: []
+      responses: {}
+      operationId: put-chats-chat_id-webhooks-webhook_id
+      description: |+
+        ### Endpoint is used to activate Webhook model from a specific chat-bot.
+        #### To activate the webhook, we will send a **POST** request to the **URL** specified in the Webhook model.
+        #### In response, you need to return a **json** object containing the **token** parameter and its **value** from current Webhook model.
+
+        #### Ex: { token: '123' }
+
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/webhook/Webhook.v1.yaml
+        description: '#### Updated model with a new **status_id**. More info in **WebhookStatus** model.'
+    delete:
+      summary: Webhook Deactivation
+      operationId: delete-chats-chat_id-webhooks-webhook_id
+      responses:
+        '200':
+          description: '#### **Success** response is **1**. Else **0**.'
+          content:
+            application/json:
+              schema:
+                type: integer
+      description: '### Endpoint is used to deactivate Webhook model from a specific chat-bot.'
 components:
   schemas: {}
   securitySchemes:
