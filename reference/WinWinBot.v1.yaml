@@ -26,7 +26,7 @@ paths:
           description: |-
             <!-- theme: success -->
             > #### If **api** param = **1**, then response is **object** with token params.
-
+            <!-- theme: success -->
             > #### Else **url** for frontend authorization.
           content:
             application/json:
@@ -339,7 +339,7 @@ paths:
                   items:
                     allOf:
                       - $ref: ../models/webhook/Webhook.v1.yaml
-        description: "<!-- theme: success-->\n> #### If you specified **id**, then response is **Webhook** model. \n> #### Else - **array** of **Webhook** models."
+        description: "<!-- theme: success-->\n> #### If you specified **id**, then response is **Webhook** model. \n> #### Else **array** of **Webhook** models."
       parameters:
         - schema:
             type: integer
