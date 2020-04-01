@@ -23,7 +23,11 @@ paths:
         - auth
       responses:
         '200':
-          description: ''
+          description: |-
+            <!-- theme: success -->
+            > #### If **api** param = **1**, then response is **object** with token params.
+
+            > #### Else **url** for frontend authorization.
           content:
             application/json:
               schema:
@@ -62,10 +66,7 @@ paths:
             type: boolean
           in: query
           name: api
-          description: |-
-            If param = **1**, then response is **object** with token params.
-
-            Else - **url** for frontend authorization.
+          description: login type
       description: '> #### Endpoint for **authorization**.'
   /auth/logout:
     get:
@@ -92,7 +93,11 @@ paths:
         - subscriber
       responses:
         '200':
-          description: ''
+          description: |-
+            <!-- theme: success -->
+            > #### If param **count** = **1**, then response is **count** object of specified models.
+            <!-- theme: success -->
+            > #### Else response is object with models.
           content:
             application/json:
               schema:
@@ -257,7 +262,10 @@ paths:
         - form
       responses:
         '200':
-          description: ''
+          description: |-
+            <!-- theme: success -->
+
+            > #### **ChatSubscriberForm** model
           content:
             application/json:
               schema:
@@ -310,7 +318,7 @@ paths:
                   description: URL for webhook notifications
               required:
                 - url
-        description: "<!-- theme: success -->\n> #### Response is **Webhook** model which contains **token** attribute. Store **token** value in a **safe** place.\n\n<!-- theme: warning -->\n> #### After creating the model, the webhook is in the **initialization** stage and you need to **activate** it. \n> #### More information is available in **Webhook Activation** endpoint."
+        description: "<!-- theme: success -->\n> #### Response is **Webhook** model which contains **token** attribute. Store **token** value in a **safe** place.\n\n<!-- theme: warning -->\n> #### After creating the model, the webhook is in the **initialization** status and you need to **activate** it. \n> #### More information is available in **Webhook Activation** endpoint."
     get:
       summary: Webhook Get
       tags:
