@@ -2,7 +2,14 @@ title: ChatPlatform
 type: object
 x-tags:
   - chat
-description: "  > ##### ID = 1: Telegram\n  \n  > ##### ID = 2: Viber\n  \n  > ##### ID = 3: VK\n  \n  > ##### ID = 3: Facebook"
+description: |2-
+    > ##### ID = 1: Telegram
+    
+    > ##### ID = 2: Viber
+    
+    > ##### ID = 3: VK
+    
+    > ##### ID = 4: Facebook
 properties:
   id:
     type: integer
