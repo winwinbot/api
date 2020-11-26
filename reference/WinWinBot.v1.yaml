@@ -193,7 +193,7 @@ paths:
             type: array
           in: query
           name: info
-          description: Get models from specified **info**
+          description: Get models from specified **ChatSubscriberInfo**.
           style: form
       security:
         - OAuth: []
