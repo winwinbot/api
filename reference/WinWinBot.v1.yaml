@@ -77,7 +77,11 @@ paths:
       operationId: get-auth-logout
       security:
         - OAuth: []
-      description: "> #### Endpoint for **deactivation** current token. \n\n<!-- theme: success -->\n> #### After **success** logout you will be redirected to **home** page."
+      description: |-
+        > #### Endpoint for **deactivation** current token. 
+
+        <!-- theme: success -->
+        > #### After **success** logout you will be redirected to **home** page.
       requestBody: {}
   '/chats/{chat_id}/subscribers':
     parameters:
@@ -127,7 +131,7 @@ paths:
             minimum: 1
           in: query
           name: id
-          description: 'Get models from specified **id**'
+          description: Get models from specified **id**
         - schema:
             type: integer
             minimum: 1
@@ -143,12 +147,12 @@ paths:
             minimum: 1
           in: query
           name: filter_id
-          description: 'Get models from specified **filter_id**'
+          description: Get models from specified **filter_id**
         - schema:
             type: boolean
           in: query
           name: count
-          description: 'Get **number** of models'
+          description: Get **number** of models
         - schema:
             type: string
           in: query
@@ -160,29 +164,37 @@ paths:
             minimum: 1
           in: query
           name: limit
-          description: 'Limit **number** of models in response'
+          description: Limit **number** of models in response
         - schema:
             type: boolean
           in: query
           name: with_trashed
-          description: 'Append **unsubscribed** models to response'
+          description: Append **unsubscribed** models to response
         - schema:
             type: boolean
           in: query
           name: with_chat
-          description: 'Append **ChatShort** model to response'
+          description: Append **ChatShort** model to response
         - schema:
             type: string
           in: header
           name: i18n-lang
-          description: "For a query with **count** parameter, you can specify the language (**ru**, **en**, **es**, **hu**) of declining the number of subscribers. \n\nDefault lang is **en**."
+          description: |-
+            For a query with **count** parameter, you can specify the language (**ru**, **en**, **es**, **hu**) of declining the number of subscribers. 
+
+            Default lang is **en**.
         - schema:
             type: boolean
           in: query
           name: with_pagination
+          description: Using **api** set this param to **0**. Else response will be **paginated**.
           required: true
-          description: 'Using **api** set this param to **0**. Else response will be **paginated**.'
-      requestBody: {}
+        - schema:
+            type: array
+          in: query
+          name: info
+          description: Get models from specified **info**
+          style: form
       security:
         - OAuth: []
       description: '> #### Endpoint is used to get **ChatSubscriber** models from specific chat-bot.'
@@ -284,7 +296,7 @@ paths:
             type: boolean
           in: query
           name: with_chat
-          description: 'Append **ChatShort** model to response'
+          description: Append **ChatShort** model to response
   '/chats/{chat_id}/webhooks':
     parameters:
       - schema:
@@ -318,7 +330,13 @@ paths:
                   description: URL for webhook notifications
               required:
                 - url
-        description: "<!-- theme: success -->\n> #### Response is **Webhook** model which contains **token** attribute. Store **token** value in a **safe** place.\n\n<!-- theme: warning -->\n> #### After creating the model, the webhook is in the **initialization** status and you need to **activate** it. \n> #### More information is available in **Webhook Activation** endpoint."
+        description: |-
+          <!-- theme: success -->
+          > #### Response is **Webhook** model which contains **token** attribute. Store **token** value in a **safe** place.
+
+          <!-- theme: warning -->
+          > #### After creating the model, the webhook is in the **initialization** status and you need to **activate** it. 
+          > #### More information is available in **Webhook Activation** endpoint.
     get:
       summary: Webhook Get
       tags:
@@ -339,19 +357,22 @@ paths:
                   items:
                     allOf:
                       - $ref: ../models/webhook/Webhook.v1.yaml
-        description: "<!-- theme: success-->\n> #### If you specified **id**, then response is **Webhook** model. \n> #### Else **array** of **Webhook** models."
+        description: |-
+          <!-- theme: success-->
+          > #### If you specified **id**, then response is **Webhook** model. 
+          > #### Else **array** of **Webhook** models.
       parameters:
         - schema:
             type: integer
             minimum: 1
           in: query
           name: id
-          description: 'Get models from specified **id**'
+          description: Get models from specified **id**
         - schema:
             type: boolean
           in: query
           name: with_pagination
-          description: 'Using **api** set this param to **0**. Else response will be **paginated**.'
+          description: Using **api** set this param to **0**. Else response will be **paginated**.
           required: true
   '/chats/{chat_id}/webhooks/{webhook_id}':
     parameters:
