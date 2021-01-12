@@ -13,6 +13,14 @@ info:
     ```json
     Example: { "authorization": "Bearer 123" }
     ```
+
+
+    >#### The following headers **should** be sent to **debug errors**. Otherwise, with an **incorrect request**, a **redirect** to the main page will occur
+
+
+    ```json
+    Example: { "Accept": "application/json" }
+    ``` 
 servers:
   - url: 'http://my.winwinbot.com/api'
 paths:
