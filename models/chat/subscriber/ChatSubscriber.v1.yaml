@@ -52,12 +52,17 @@ properties:
     type:
       - integer
       - 'null'
-    description: "Last question id, that was asked. \n\nUpdated or reset when a new message is received.\n"
+    description: |
+      Last question id, that was asked. 
+
+      Updated or reset when a new message is received.
   question_token:
     type:
       - string
       - 'null'
-    description: "Last question message token. \nUsed to remove the keyboard after question answer."
+    description: |-
+      Last question message token. 
+      Used to remove the keyboard after question answer.
   info:
     type: array
     items:
@@ -70,13 +75,19 @@ properties:
   updated_at:
     type: string
     format: date-time
-    description: "This parameter is used to calculate the current day of the subscription, as the difference between now and updated_at. \n\nUpdated after \"/start\" command."
+    description: |-
+      This parameter is used to calculate the current day of the subscription, as the difference between now and updated_at. 
+
+      Updated after "/start" command.
   deleted_at:
     type:
       - string
       - 'null'
     format: date-time
     description: Subscription end date
+  uuid:
+    type: string
+    description: Subscriber uuid
 required:
   - id
   - subscriber_id
@@ -94,3 +105,4 @@ required:
   - created_at
   - updated_at
   - deleted_at
+  - uuid
