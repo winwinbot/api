@@ -22,7 +22,7 @@ info:
     Example: { "Accept": "application/json" }
     ``` 
 servers:
-  - url: 'http://my.winwinbot.com/api'
+  - url: 'https://my.winwinbot.com/api'
 paths:
   /auth/login:
     post:
