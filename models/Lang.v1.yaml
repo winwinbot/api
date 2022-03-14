@@ -2,9 +2,17 @@ title: Lang
 type: object
 x-tags:
   - lang
-description: "  > ##### ID = 1: RU\n  \n  > ##### ID = 2: EN\n  \n  > ##### ID = 3: HU\n  \n  > ##### ID = 4: ES"
+description: |2-
+    > ##### ID = 1: RU
+    
+    > ##### ID = 2: EN
+    
+    > ##### ID = 3: HU
+    
+    > ##### ID = 4: ES
 properties:
   id:
     type: integer
 required:
   - id
+x-internal: true
